@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -8,7 +9,8 @@ const createWindow = () => {
     x: 1100,
     y: 75,
   });
-  mainWindow.loadURL("https://baidu.com");
+  // mainWindow.loadURL("https://baidu.com");
+  mainWindow.loadFile(path.resolve(__dirname, "index.html"));
 };
 
 app.whenReady().then(() => {
