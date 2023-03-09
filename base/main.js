@@ -9,6 +9,7 @@ const createWindow = () => {
     x: 1100,
     y: 75,
   });
+  // mainWindow.webContents.toggleDevTools()
   // mainWindow.loadURL("https://baidu.com");
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
 };
