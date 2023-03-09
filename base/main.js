@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-
+require('./menu.js')
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     height: 400,
@@ -11,8 +11,13 @@ const createWindow = () => {
     webPreferences: {
       // 预加载脚本
       preload: path.resolve(__dirname, 'preload.js'),
-      // 使用node功能
-      nodeIntegration: true
+      // 都不建议开启
+      // 预加载脚本 渲染进程 使用node功能 默认false
+      nodeIntegration: false,
+      // 预加载脚本 与 渲染进程不隔离 默认true
+      contextIsolation: true,
+      // 关闭沙盒模式 预加载脚本 使用node electron功能 默认true 可使用部分模块
+      sandbox: true
     }
   });
   mainWindow.webContents.toggleDevTools()
@@ -29,7 +34,9 @@ app.on("window-all-closed", () => {
 });
 
 app.on("activate", () => {
-  createWindow();
+  if(BrowserWindow.getAllWindows().length === 0 && process.platform === 'darwin') {
+    createWindow();
+  }
 });
 
 ipcMain.on('saveFile', () => {
