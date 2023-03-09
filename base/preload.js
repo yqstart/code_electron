@@ -14,3 +14,7 @@ contextBridge.exposeInMainWorld('api', {
         ipcRenderer.send('saveFile')
     }
 })
+
+ipcRenderer.on('toPreload', () => {
+    console.log(323232)
+})

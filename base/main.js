@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-require('./menu.js')
+const { createMenu } = require('./menu.js')
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     height: 400,
@@ -23,10 +23,13 @@ const createWindow = () => {
   mainWindow.webContents.toggleDevTools()
   // mainWindow.loadURL("https://baidu.com");
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
+
+  return mainWindow
 };
 
 app.whenReady().then(() => {
-  createWindow();
+  const win = createWindow();
+  createMenu(win)
 });
 
 app.on("window-all-closed", () => {
