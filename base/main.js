@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const { createMenu } = require('./menu.js')
+require('./contextMenu.js')
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     height: 400,
@@ -10,15 +11,15 @@ const createWindow = () => {
     y: 75,
     webPreferences: {
       // 预加载脚本
-      preload: path.resolve(__dirname, 'preload.js'),
-      // 都不建议开启
-      // 预加载脚本 渲染进程 使用node功能 默认false
-      nodeIntegration: false,
-      // 预加载脚本 与 渲染进程不隔离 默认true
-      contextIsolation: true,
-      // 关闭沙盒模式 预加载脚本 使用node electron功能 默认true 可使用部分模块
-      sandbox: true
-    }
+      preload: path.resolve(__dirname, "preload.js"),
+      // // 都不建议开启
+      // // 预加载脚本 渲染进程 使用node功能 默认false
+      // nodeIntegration: false,
+      // // 预加载脚本 与 渲染进程不隔离 默认true
+      // contextIsolation: true,
+      // // 关闭沙盒模式 预加载脚本 使用node electron功能 默认true 可使用部分模块
+      // sandbox: true,
+    },
   });
   mainWindow.webContents.toggleDevTools()
   // mainWindow.loadURL("https://baidu.com");

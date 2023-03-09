@@ -6,3 +6,8 @@ window.addEventListener('DOMContentLoaded', () => {
         window.api.send()
     })
 })
+
+
+window.addEventListener('contextmenu', () => {
+    window.api.contextMenuSend()
+})
