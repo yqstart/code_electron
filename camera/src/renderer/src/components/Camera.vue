@@ -1,21 +1,24 @@
 <template>
-  <main class="h-screen w-screen flex">
-    <video class="object-cover"></video>
+  <main
+    class="h-screen w-screen overflow-hidden"
+    :style="{ border: `${config.borderWidth} solid ${config.borderColor}` }"
+    :class="{ 'rounded-full': config.rounded }"
+  >
+    <video class="object-cover h-full border-0" :class="{ 'rounded-full': config.rounded }"></video>
   </main>
 </template>
 
 <script setup lang="ts">
-// navigator.mediaDevices.enumerateDevices().then(res => {
-//   console.log(res)
-// })
-
 import { onMounted } from 'vue'
+import { userConfigStore } from '../store/userConfigStore'
+import { storeToRefs } from 'pinia'
+const { config } = storeToRefs(userConfigStore())
 
 onMounted(() => {
   const video = document.querySelector('video')
   const constraints = {
     audio: false,
-    video: true
+    video: { deviceId: config.value.deviceId }
   }
   navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
     video.srcObject = stream
