@@ -4,8 +4,11 @@ import Setting from './components/Setting.vue'
 import { Config, CameraOne, MagicWand } from '@icon-park/vue-next'
 import { storeToRefs } from 'pinia'
 import { userConfigStore } from './store/userConfigStore'
+import useDrag from "./composables/useDrag";
 const { config } = storeToRefs(userConfigStore())
 
+const { drag } = useDrag()
+drag.run()
 const quit = () => {
   window.api.quit()
 }
