@@ -15,7 +15,7 @@ import { storeToRefs } from 'pinia'
 const { config } = storeToRefs(userConfigStore())
 
 onMounted(() => {
-  const video = document.querySelector('video')
+  const video = document.querySelector('video')!
   const constraints = {
     audio: false,
     video: { deviceId: config.value.deviceId }
