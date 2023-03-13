@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import Camera from "./components/Camera.vue";
 </script>
 
 <template>
   <div>
-    <el-button type="primary">main</el-button>
-    <div class="bg-red-600 text-white">main</div>
+    <camera></camera>
   </div>
 </template>
 
-<style lang="less">
-@import './assets/css/styles.less';
+<style lang="scss">
 </style>

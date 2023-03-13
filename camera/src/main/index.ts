@@ -8,8 +8,13 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 300,
     height: 300,
+    minWidth: 250,
+    minHeight: 250,
+    x: 1080,
+    y: 75,
     alwaysOnTop: true,
     show: false,
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -17,6 +22,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
+
+  mainWindow.setAspectRatio(1)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
